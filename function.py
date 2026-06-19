@@ -8,9 +8,13 @@ def is_even(n):
     return n%2==0
 
 numbers=[1,2,3,4,5,6,7,8,9,10]
+#gives a triangle
 #evens=[]
 #for n in numbers:
     #if is_even(n):
         #evens.append(n)
-evens=[n for n in numbers if is_even(n)]
+        #more pythony(gives a list)
+#evens=[n for n in numbers if is_even(n)]
+evens=list(filter(is_even,numbers))
 print(evens)
+
