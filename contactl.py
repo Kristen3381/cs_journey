@@ -24,7 +24,14 @@ add_contact("Shavia","0795901578")
 add_contact("Brian","12345567897")
 #list_contact()
 print(find_contact("Shavia"))
-
+del_contact("Brian")
+list_contact()
+#tuples for data that does not change
+#Tuples are faster than lists
+coordinates=(1.4345,23.23443)
+rgb_red=(255,0,0)
+lat,long=coordinates
+print(f"Latitude:{lat},Longitude:{long}")
 
 
 
