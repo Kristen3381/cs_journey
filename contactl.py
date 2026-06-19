@@ -26,7 +26,7 @@ add_contact("Brian","12345567897")
 print(find_contact("Shavia"))
 del_contact("Brian")
 list_contact()
-#tuples for data that does not change
+#tuples for data that is constant
 #Tuples are faster than lists
 coordinates=(1.4345,23.23443)
 rgb_red=(255,0,0)
