@@ -15,6 +15,8 @@ class BankAccount:
             print(f"Insufficient funds. Balance:{self.balance}")
 
     def getbalance(self):
+        
+        print(f"{self.owner}'s balance is {self.balance}")
         return self.balance
     
 account=BankAccount("Laura",2000)  
