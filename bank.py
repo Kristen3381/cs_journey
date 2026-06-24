@@ -35,6 +35,16 @@ account2.withdraw(15000)
 account2.withdraw(3000)
 account2.getbalance()    
 
+class SavingsAccount(BankAccount):
+    def __init__(self, owner, balance=0, interest_rate=0.05):
+        super().__init__(owner,balance)
+        self.interest_rate=interest_rate
+    
+    def add_interest(self):
+        interest=self.balance*self.interest_rate
+        self.balance+=interest
+        print(f"Interest added.New balance:{self.balance}")
+
 
    
 
