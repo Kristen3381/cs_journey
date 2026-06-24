@@ -24,7 +24,14 @@ account.deposit(500)
 account.withdraw(5000)
 account.withdraw(2000)
 account.getbalance()
-    
+
+account2=BankAccount("Daisy",10000)
+print(f"{account2.owner}'s balance is {account2.getbalance()}")
+
+account2.deposit(200)
+account2.withdraw(15000)
+account2.withdraw(3000)
+account2.getbalance()    
 
 
    
