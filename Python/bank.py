@@ -19,6 +19,9 @@ class BankAccount:
         print(f"{self.owner}'s balance is {self.balance}")
         return self.balance
     
+    def __str__(self):
+        return f"BankAccount(owner='{self.owner}',balance={self.balance})"
+    
 account=BankAccount("Laura",2000)  
 print(f"{account.owner}'s balance is {account.getbalance()}")
 
@@ -45,8 +48,16 @@ class SavingsAccount(BankAccount):
         self.balance+=interest
         print(f"Interest added.New balance:{self.balance}")
 
-
-   
+    
+savings = SavingsAccount("Laura", 5000, 0.10)
+print(f"{account.owner}'s balance is {savings.getbalance()}")
+savings.deposit(1000)
+savings.withdraw(500)
+savings.getbalance()
+savings.add_interest()
+print (savings.getbalance()) 
+print(account)
+print(account2)
 
 
             
