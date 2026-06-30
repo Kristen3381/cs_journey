@@ -13,5 +13,22 @@ with open("notes.txt","a") as file:
 
 contacts={
     "Laura":"010",
-    "Daisy"
+    "Daisy":"012"
 }
+
+with open ("contacts.json","w") as file:
+    json.dump(contacts,file,indent=4)
+
+with open("contacts.json","r") as file:
+    loaded_contacts=json.load(file)
+    print(loaded_contacts)
+
+try:
+    with open("does not exist json","r") as file:
+        loaded_contacts=json.load(file)
+       
+except FileNotFoundError:
+    print("File not found -starting with an empty contact list.")
+    loaded_contacts={}
+
+print(loaded_contacts)
