@@ -1,0 +1,2 @@
+This is my first note.
+Learning file I/O today.
