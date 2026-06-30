@@ -6,7 +6,7 @@ with open("notes.txt","w") as file:
 #read a text file
 with open("notes.txt","r") as file:
     content=file.read()
-    print(content)
+    
  #open a text file       
 with open("notes.txt","a") as file:
     file.write("Add a new note without erasing the previous one \n")
@@ -25,11 +25,11 @@ with open("contacts.json","r") as file:
     print(loaded_contacts)
 #Error handling to catch the error without crashing
 try:
-    with open("does not exist json","r") as file:
+    with open("does_not_exist.json","r") as file:
         loaded_contacts=json.load(file)
        
 except FileNotFoundError:
     print("File not found -starting with an empty contact list.")
     loaded_contacts={}
 
-print(loaded_contacts)
+print(f"Loaded_contacts:{loaded_contacts}")
