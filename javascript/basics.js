@@ -26,9 +26,9 @@ const company="TechSavanna"
 console.log(`I am studying at ${company} in ${city}`)
 
 const message=`
-Name:${name}
-Age=${age}
-City=${city}
+Name: ${name}
+Age: ${age}
+City: ${city}
 `
 console.log(message)
 
@@ -55,7 +55,7 @@ console.log(message)
 
 
     //Array destructuring
-    const colors=["red","Pink","Purple"]
+    const colors=["Red","Pink","Purple"]
     const[first,second,third]=colors
     console.log(first,second,third)
     
