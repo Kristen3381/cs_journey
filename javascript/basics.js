@@ -23,7 +23,7 @@ console.log(typeof notDefined)
 //template literals
 const city="Nairobi"
 const company="TechSavanna"
-console.log(`I am studying at ${company}in ${city}`)
+console.log(`I am studying at ${company} in ${city}`)
 
 const message=`
 Name:${name}
