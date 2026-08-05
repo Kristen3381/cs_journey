@@ -94,3 +94,23 @@ const pythonCourse:Course ={
         return `${this.title}(${this.credits}credits)`
     }
 }
+
+console.log(`\nCourse:${pythonCourse.getDescription()}`)
+
+//COCKTAIL
+interface Task{
+    id:number
+    text:string
+    priority:Priority
+    createdAt:Date
+}
+
+function createTask(text:string,priority:Priority):Task{
+    return{
+        id:Date.now(),
+        text,
+        priority,
+        done:false,
+        createdAt:new Date()
+    }
+}
