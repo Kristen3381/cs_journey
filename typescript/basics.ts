@@ -115,3 +115,11 @@ function createTask(text:string,priority:Priority):Task{
         createdAt:new Date()
     }
 }
+
+function completeTask(task:Task):Task{
+    return {...task,done:true}
+}
+
+function filterByPriority(tasks:Task[], priority:Priority):Task[]{
+    return tasks.filter(task => task.priority === priority)
+}
