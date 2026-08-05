@@ -53,4 +53,16 @@ let taskPriority:Priority="high"
 let accountStatus:Status="active"
 console.log(`\nPriority:${taskPriority}|Status:${accountStatus}`)
 
+//TYPED FUNCTIONS
+function calculateGrade(score:number):string {
+    if (score>=70)return "A"
+    if(score>=60)return "B"
+    if(score>=50)return "C"
+    if(score>=40)return "D"
+    return "E"
+}
+console.log(`\nGrade for 85:${calculateGrade(8)}`)
+console.log(`Grade for 72:${calculateGrade(72)}`)
+console.log(`Grade for 55:${calculateGrade(55)}`)
+
 
