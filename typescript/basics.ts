@@ -66,3 +66,31 @@ console.log(`Grade for 72:${calculateGrade(72)}`)
 console.log(`Grade for 55:${calculateGrade(55)}`)
 
 
+//GENERICS Works with any type Typescript infers the type automatically
+
+function getFirst<T>(arr:T[]):T{
+    return arr[0]
+}
+
+const firstScore=getFirst([45,76,89])
+const firstName=getFirst(["Alice","Laura"])
+
+console.log(`\nFirst Score :${firstScore}`)
+console.log(`First Name: ${firstName}`)
+
+//INTERFACES WITH METHODS
+interface Course{
+    id:number
+    title:string
+    credits:number
+    getDescription():string
+}
+
+const pythonCourse:Course ={
+    id:1,
+    title:"Introduction to Python",
+    credits:3,
+    getDescription(){
+        return `${this.title}(${this.credits}credits)`
+    }
+}
