@@ -102,6 +102,7 @@ interface Task{
     id:number
     text:string
     priority:Priority
+    done:boolean,
     createdAt:Date
 }
 
