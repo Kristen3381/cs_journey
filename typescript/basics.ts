@@ -123,3 +123,10 @@ function completeTask(task:Task):Task{
 function filterByPriority(tasks:Task[], priority:Priority):Task[]{
     return tasks.filter(task => task.priority === priority)
 }
+let myTasks:Task[]=[
+    createTask("Study TypeScript","high"),
+    createTask("Build React App","high"),
+    createTask("Review notes","medium"),
+    createTask("Take a walk","low")  
+]
+
