@@ -1,132 +1,190 @@
-let studentName:String="Laura"
-let age:number=21
-let isEnrolled:boolean=true
-let gpa:number=3.8
- 
+// ── BASIC TYPES ───────────────────────────────────────
+let studentName: string = "Laura"
+let age: number = 21
+let isEnrolled: boolean = true
+let gpa: number = 3.8
 
-//ARRAYS
-let scores: number[]=[45,23,56,74,51]
-let names:Array<string> =["Alice","Bob","Shavia"]
+// TypeScript catches type mismatches immediately
+// Try uncommenting this — you'll see an error:
+// studentName = 42    // Error: Type 'number' is not assignable to type 'string'
 
-const average=scores.reduce((sum,n)=> sum +n,0)/scores.length
-console.log(`Average score:${average}`)
+console.log(`${studentName} | Age: ${age} | GPA: ${gpa}`)
 
-let id:number | string=101  //A variable can be more than one"
-id="STU-101"
 
-console.log(`StudentId:${id}`)
+// ── ARRAYS ────────────────────────────────────────────
+// Two ways to type arrays
+let scores: number[] = [85, 92, 78, 95, 88]
+let names: Array<string> = ["Alice", "Bob", "Diana"]
 
-//INTERFACES
-interface Student{
-    id:number
-    name:string
-    course:string
-    gpa:number
-    email?:string //The ? makes this field optonal
+// TypeScript prevents wrong types in arrays
+// scores.push("ninety")   // Error: Argument of type 'string' is not assignable
 
+const average = scores.reduce((sum, n) => sum + n, 0) / scores.length
+console.log(`Average score: ${average}`)
+
+
+// ── UNION TYPES ───────────────────────────────────────
+// A variable that can be more than one type
+let id: number | string = 101
+id = "STU-101"    // also valid — it can be string OR number
+// id = true      // Error: boolean not in the union
+
+console.log(`Student ID: ${id}`)
+
+
+// ── INTERFACES ────────────────────────────────────────
+// An interface defines the shape of an object
+// Like a contract — any object using this interface
+// MUST have these exact fields
+
+interface Student {
+    id: number
+    name: string
+    course: string
+    gpa: number
+    email?: string    // the ? makes this field optional
 }
 
-const student1:Student= {
-    id:1,
-    name:"Daisy",
-    course:"Computer Science",
-    gpa:3.8,
-    email:"shavialaura462@gmail.com"
+// This works — matches the interface
+const student1: Student = {
+    id: 1,
+    name: "Laura Shavia",
+    course: "Computer Science",
+    gpa: 3.8,
+    email: "laura@techsavanna.com"
 }
 
-const student2:Student={
-    id:2,
-    name:"Henny",
-    course:"Medicine",
-    gpa:4.1
+// This also works — email is optional
+const student2: Student = {
+    id: 2,
+    name: "Alice Wanjiru",
+    course: "Software Engineering",
+    gpa: 3.5
 }
 
-console.log(`\nStudent 1:${student1.name}-${student1.course}`)
-console.log(`\nStudent 2:${student2.name}-${student2.course}`)
+// This would fail — missing required fields
+// const student3: Student = {
+//     id: 3,
+//     name: "Bob"
+//     // Error: missing 'course' and 'gpa'
+// }
 
-//ALIASES
-type Priority="high"|"medium"|"low"
-type Status="active"|"inactive"|"suspended"
+console.log(`\nStudent 1: ${student1.name} - ${student1.course}`)
+console.log(`Student 2: ${student2.name} - ${student2.course}`)
 
-let taskPriority:Priority="high"
 
-let accountStatus:Status="active"
-console.log(`\nPriority:${taskPriority}|Status:${accountStatus}`)
+// ── TYPE ALIASES ──────────────────────────────────────
+// Like an interface but for simpler types
+type Priority = "high" | "medium" | "low"
+type Status = "active" | "inactive" | "suspended"
 
-//TYPED FUNCTIONS
-function calculateGrade(score:number):string {
-    if (score>=70)return "A"
-    if(score>=60)return "B"
-    if(score>=50)return "C"
-    if(score>=40)return "D"
-    return "E"
+let taskPriority: Priority = "high"
+// taskPriority = "urgent"   // Error: not in the union
+
+let accountStatus: Status = "active"
+console.log(`\nPriority: ${taskPriority} | Status: ${accountStatus}`)
+
+
+// ── TYPED FUNCTIONS ───────────────────────────────────
+// Specify types for parameters AND return value
+
+function calculateGrade(score: number): string {
+    if (score >= 90) return "A"
+    if (score >= 80) return "B"
+    if (score >= 70) return "C"
+    if (score >= 60) return "D"
+    return "F"
 }
-console.log(`\nGrade for 85:${calculateGrade(8)}`)
-console.log(`Grade for 72:${calculateGrade(72)}`)
-console.log(`Grade for 55:${calculateGrade(55)}`)
+
+// Return type is enforced too
+// function broken(score: number): string {
+//     return 42    // Error: number is not assignable to string
+// }
+
+console.log(`\nGrade for 85: ${calculateGrade(85)}`)
+console.log(`Grade for 72: ${calculateGrade(72)}`)
+console.log(`Grade for 55: ${calculateGrade(55)}`)
 
 
-//GENERICS Works with any type Typescript infers the type automatically
+// ── GENERICS ──────────────────────────────────────────
+// A generic function works with any type
+// but stays type-safe
 
-function getFirst<T>(arr:T[]):T{
+function getFirst<T>(arr: T[]): T {
     return arr[0]
 }
 
-const firstScore=getFirst([45,76,89])
-const firstName=getFirst(["Alice","Laura"])
+// TypeScript infers the type automatically
+const firstScore = getFirst([85, 92, 78])     // T = number
+const firstName = getFirst(["Alice", "Bob"])   // T = string
 
-console.log(`\nFirst Score :${firstScore}`)
-console.log(`First Name: ${firstName}`)
+console.log(`\nFirst score: ${firstScore}`)    // 85
+console.log(`First name: ${firstName}`)        // Alice
 
-//INTERFACES WITH METHODS
-interface Course{
-    id:number
-    title:string
-    credits:number
-    getDescription():string
+
+// ── INTERFACES WITH METHODS ───────────────────────────
+interface Course {
+    id: number
+    title: string
+    credits: number
+    getDescription(): string    // method signature
 }
 
-const pythonCourse:Course ={
-    id:1,
-    title:"Introduction to Python",
-    credits:3,
-    getDescription(){
-        return `${this.title}(${this.credits}credits)`
+const pythonCourse: Course = {
+    id: 1,
+    title: "Python Programming",
+    credits: 3,
+    getDescription() {
+        return `${this.title} (${this.credits} credits)`
     }
 }
 
-console.log(`\nCourse:${pythonCourse.getDescription()}`)
+console.log(`\nCourse: ${pythonCourse.getDescription()}`)
 
-//COCKTAIL
-interface Task{
-    id:number
-    text:string
-    priority:Priority
-    done:boolean,
-    createdAt:Date
+
+// ── PUTTING IT ALL TOGETHER ───────────────────────────
+interface Task {
+    id: number
+    text: string
+    priority: Priority    // reusing our Priority type alias!
+    done: boolean
+    createdAt: Date
 }
 
-function createTask(text:string,priority:Priority):Task{
-    return{
-        id:Date.now(),
+function createTask(text: string, priority: Priority): Task {
+    return {
+        id: Date.now(),
         text,
         priority,
-        done:false,
-        createdAt:new Date()
+        done: false,
+        createdAt: new Date()
     }
 }
 
-function completeTask(task:Task):Task{
-    return {...task,done:true}
+function completeTask(task: Task): Task {
+    return { ...task, done: true }
 }
 
-function filterByPriority(tasks:Task[], priority:Priority):Task[]{
+function filterByPriority(tasks: Task[], priority: Priority): Task[] {
     return tasks.filter(task => task.priority === priority)
 }
-let myTasks:Task[]=[
-    createTask("Study TypeScript","high"),
-    createTask("Build React App","high"),
-    createTask("Review notes","medium"),
-    createTask("Take a walk","low")  
+
+// Build a typed task list
+let myTasks: Task[] = [
+    createTask("Study TypeScript", "high"),
+    createTask("Build React app", "high"),
+    createTask("Review notes", "medium"),
+    createTask("Take a walk", "low")
 ]
 
+myTasks[0] = completeTask(myTasks[0])
+
+const highPriorityTasks = filterByPriority(myTasks, "high")
+
+console.log("\n--- Task Manager (TypeScript) ---")
+myTasks.forEach(task => {
+    const status = task.done ? "✓" : "○"
+    console.log(`[${status}] ${task.text} | ${task.priority}`)
+})
+
+console.log(`\nHigh priority tasks: ${highPriorityTasks.length}`)
