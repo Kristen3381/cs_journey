@@ -4,48 +4,32 @@ let age: number = 21
 let isEnrolled: boolean = true
 let gpa: number = 3.8
 
-// TypeScript catches type mismatches immediately
-// Try uncommenting this — you'll see an error:
-// studentName = 42    // Error: Type 'number' is not assignable to type 'string'
-
 console.log(`${studentName} | Age: ${age} | GPA: ${gpa}`)
 
 
 // ── ARRAYS ────────────────────────────────────────────
-// Two ways to type arrays
 let scores: number[] = [85, 92, 78, 95, 88]
 let names: Array<string> = ["Alice", "Bob", "Diana"]
-
-// TypeScript prevents wrong types in arrays
-// scores.push("ninety")   // Error: Argument of type 'string' is not assignable
 
 const average = scores.reduce((sum, n) => sum + n, 0) / scores.length
 console.log(`Average score: ${average}`)
 
 
 // ── UNION TYPES ───────────────────────────────────────
-// A variable that can be more than one type
 let id: number | string = 101
-id = "STU-101"    // also valid — it can be string OR number
-// id = true      // Error: boolean not in the union
-
+id = "STU-101"
 console.log(`Student ID: ${id}`)
 
 
 // ── INTERFACES ────────────────────────────────────────
-// An interface defines the shape of an object
-// Like a contract — any object using this interface
-// MUST have these exact fields
-
 interface Student {
     id: number
     name: string
     course: string
     gpa: number
-    email?: string    // the ? makes this field optional
+    email?: string
 }
 
-// This works — matches the interface
 const student1: Student = {
     id: 1,
     name: "Laura Shavia",
@@ -54,7 +38,6 @@ const student1: Student = {
     email: "laura@techsavanna.com"
 }
 
-// This also works — email is optional
 const student2: Student = {
     id: 2,
     name: "Alice Wanjiru",
@@ -62,32 +45,20 @@ const student2: Student = {
     gpa: 3.5
 }
 
-// This would fail — missing required fields
-// const student3: Student = {
-//     id: 3,
-//     name: "Bob"
-//     // Error: missing 'course' and 'gpa'
-// }
-
 console.log(`\nStudent 1: ${student1.name} - ${student1.course}`)
 console.log(`Student 2: ${student2.name} - ${student2.course}`)
 
 
 // ── TYPE ALIASES ──────────────────────────────────────
-// Like an interface but for simpler types
 type Priority = "high" | "medium" | "low"
 type Status = "active" | "inactive" | "suspended"
 
 let taskPriority: Priority = "high"
-// taskPriority = "urgent"   // Error: not in the union
-
 let accountStatus: Status = "active"
 console.log(`\nPriority: ${taskPriority} | Status: ${accountStatus}`)
 
 
 // ── TYPED FUNCTIONS ───────────────────────────────────
-// Specify types for parameters AND return value
-
 function calculateGrade(score: number): string {
     if (score >= 90) return "A"
     if (score >= 80) return "B"
@@ -96,30 +67,21 @@ function calculateGrade(score: number): string {
     return "F"
 }
 
-// Return type is enforced too
-// function broken(score: number): string {
-//     return 42    // Error: number is not assignable to string
-// }
-
 console.log(`\nGrade for 85: ${calculateGrade(85)}`)
 console.log(`Grade for 72: ${calculateGrade(72)}`)
 console.log(`Grade for 55: ${calculateGrade(55)}`)
 
 
 // ── GENERICS ──────────────────────────────────────────
-// A generic function works with any type
-// but stays type-safe
-
 function getFirst<T>(arr: T[]): T {
     return arr[0]
 }
 
-// TypeScript infers the type automatically
-const firstScore = getFirst([85, 92, 78])     // T = number
-const firstName = getFirst(["Alice", "Bob"])   // T = string
+const firstScore = getFirst([85, 92, 78])
+const firstName = getFirst(["Alice", "Bob"])
 
-console.log(`\nFirst score: ${firstScore}`)    // 85
-console.log(`First name: ${firstName}`)        // Alice
+console.log(`\nFirst score: ${firstScore}`)
+console.log(`First name: ${firstName}`)
 
 
 // ── INTERFACES WITH METHODS ───────────────────────────
@@ -127,7 +89,7 @@ interface Course {
     id: number
     title: string
     credits: number
-    getDescription(): string    // method signature
+    getDescription(): string
 }
 
 const pythonCourse: Course = {
@@ -146,7 +108,7 @@ console.log(`\nCourse: ${pythonCourse.getDescription()}`)
 interface Task {
     id: number
     text: string
-    priority: Priority    // reusing our Priority type alias!
+    priority: Priority
     done: boolean
     createdAt: Date
 }
@@ -169,7 +131,6 @@ function filterByPriority(tasks: Task[], priority: Priority): Task[] {
     return tasks.filter(task => task.priority === priority)
 }
 
-// Build a typed task list
 let myTasks: Task[] = [
     createTask("Study TypeScript", "high"),
     createTask("Build React app", "high"),
